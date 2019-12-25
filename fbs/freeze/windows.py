@@ -15,6 +15,7 @@ def freeze_windows(debug=False):
         # We therefore only add it when we're not debugging.
         args.append('--windowed')
     args.extend(['--icon', path('src/main/icons/Icon.ico')])
+    args.extend(['--add-data', '{}:views'.format(path('src/main/python/views/'))])
     run_pyinstaller(args, debug)
     _restore_corrupted_python_dlls()
     _generate_resources()

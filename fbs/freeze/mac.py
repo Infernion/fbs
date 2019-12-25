@@ -14,6 +14,7 @@ def freeze_mac(debug=False):
     if not (debug or SETTINGS['show_console_window']):
         args.append('--windowed')
     args.extend(['--icon', path('target/Icon.icns')])
+    args.extend(['--add-data', '{}:views'.format(path('src/main/python/views/'))])
     bundle_identifier = SETTINGS['mac_bundle_identifier']
     if bundle_identifier:
         args.extend([
