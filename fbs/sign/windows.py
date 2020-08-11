@@ -105,9 +105,9 @@ class _SignHelper:
         run(args_sha256, check=True, stdout=DEVNULL)
 
     def _hash(self, file_path):
-        bufsize = 65536
         hasher = hashlib.md5()
         with open(file_path, 'rb') as f:
+            bufsize = 65536
             buf = f.read(bufsize)
             while buf:
                 hasher.update(buf)

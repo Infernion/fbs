@@ -79,13 +79,12 @@ def _add_missing_dll(dll_name):
 def _find_on_path(file_name):
     path = os.environ.get("PATH", os.defpath)
     path_items = path.split(os.pathsep)
-    if sys.platform == "win32":
-        if not os.curdir in path_items:
-            path_items.insert(0, os.curdir)
+    if sys.platform == "win32" and os.curdir not in path_items:
+        path_items.insert(0, os.curdir)
     seen = set()
     for dir_ in path_items:
         normdir = os.path.normcase(dir_)
-        if not normdir in seen:
+        if normdir not in seen:
             seen.add(normdir)
             file_path = join(dir_, file_name)
             if exists(file_path):

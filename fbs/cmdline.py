@@ -61,10 +61,7 @@ def _parse_cmdline():
 def _get_cmdline_parser():
     # Were we invoked with `python -m fbs`?
     is_python_m_fbs = splitext(basename(sys.argv[0]))[0] == '__main__'
-    if is_python_m_fbs:
-        prog = '%s -m fbs' % basename(sys.executable)
-    else:
-        prog = None
+    prog = '%s -m fbs' % basename(sys.executable) if is_python_m_fbs else None
     parser = ArgumentParser(prog=prog, description='fbs')
     subparsers = parser.add_subparsers()
     for cmd_name, cmd_fn in COMMANDS.items():
